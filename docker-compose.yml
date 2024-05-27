@@ -1,0 +1,16 @@
+version : "3.9"
+services :
+  proyectos-desacoplado : 
+    container_name : proyectos-desacoplado
+    image : proyectos-desacoplado:v1
+    env_file:
+      - .env    
+    build :
+      context : .
+    ports : 
+      - "4002:4002"
+    networks : 
+      - proyectos-app
+
+networks : 
+  proyectos-app :
