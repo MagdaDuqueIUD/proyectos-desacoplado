@@ -1,16 +1,44 @@
 version : "3.9"
 services :
-  proyectos-desacoplado : 
-    container_name : proyectos-desacoplado
-    image : proyectos-desacoplado:v1
-    env_file:
-      - .env    
+  proyectos-balanceo : 
+    container_name : proyectos-balanceo
+    image : proyectos-balanceo:v1
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=4002    
     build :
       context : .
     ports : 
-      - "4002:4002"
+      - "4003"
     networks : 
       - proyectos-app
+
+
+  proyectos-balanceo2 : 
+    container_name : proyectos-balanceo2
+    image : proyectos-balanceo:v1
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=4002    
+    ports : 
+      - "4003"
+    networks : 
+      - proyectos-app
+
+
+  balanceado : 
+    container_name : balanceado
+    image : balanceado:v1
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - PORT=4002     
+    build :
+      context : ./balanceador
+    ports : 
+      - "4004:80"
+    networks : 
+      - proyectos-app
+
 
 networks : 
   proyectos-app :

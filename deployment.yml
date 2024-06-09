@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: balanceador
+  labels:
+    app: nginx-desacoplados
+spec:
+  replicas: 3
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: balanceador
+    spec:
+      containers:
+      - image: balanceador
+        name: balanceoproydesacoplado
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}
