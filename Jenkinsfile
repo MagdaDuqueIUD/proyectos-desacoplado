@@ -11,9 +11,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([
-                        string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
+                        string(credentialsId: 'MONGODB_URI', variable: 'MONGODB_URI')
                     ]) {
-                        docker.build('proyectos-balanceo:v1', '--build-arg MONGO_URI=${MONGO_URI} .')
+                        docker.build('proyectos-balanceo:v1', '--build-arg MONGODB_URI=${MONGODB_URI} .')
                     }
                 }
             }

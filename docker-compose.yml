@@ -4,7 +4,7 @@ services :
     container_name : proyectos-balanceo
     image : proyectos-balanceo:v1
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGODB_URI=${MONGODB_URI}
       - PORT=4002    
     build :
       context : .
@@ -18,7 +18,7 @@ services :
     container_name : proyectos-balanceo2
     image : proyectos-balanceo:v1
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGODB_URI=${MONGODB_URI}
       - PORT=4002    
     ports : 
       - "4003"
@@ -30,7 +30,7 @@ services :
     container_name : balanceado
     image : balanceado:v1
     environment:
-      - MONGO_URI=${MONGO_URI}
+      - MONGODB_URI=${MONGODB_URI}
       - PORT=4002     
     build :
       context : ./balanceador
