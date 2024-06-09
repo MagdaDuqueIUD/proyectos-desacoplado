@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clonar el Repositorio'){
             steps {
-                git branch: 'main', url: 'https://github.com/MagdaDuqueIUD/balanceoproydesacoplado.git'
+                git branch: 'main', url: 'https://github.com/MagdaDuqueIUD/proyectos-desacoplado.git'
             }
         }
         stage('Construir imagen de Docker'){
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([
-                            string(credentialsId: 'MONGO_URI', variable: 'MONGO_URI')
+                            string(credentialsId: 'MONGODB_URI', variable: 'MONGODB_URI')
                     ]) {
                         sh 'docker-compose up -d'
                     }
